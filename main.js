@@ -1,4 +1,4 @@
-var saveButton = document.querySelector("button");
+var saveButton = document.querySelector(".save-btn");
 var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
 var outputContainer = document.querySelector(".output-container");
