@@ -5,7 +5,7 @@ var saveButton = document.querySelector('button');
 titleInput.addEventListener('input', toggleSaveButton);
 bodyInput.addEventListener('input', toggleSaveButton);
 
-// toggleSaveButton();
+
 
 function toggleSaveButton() {
     if (titleInput.value === '' || bodyInput.value === '') {
