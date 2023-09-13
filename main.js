@@ -7,8 +7,8 @@ var currentIdeas = {
   ideas: []
 };
 
-titleInput.addEventListener('input', toggleSaveButton);
-bodyInput.addEventListener('input', toggleSaveButton);
+titleText.addEventListener('input', toggleSaveButton);
+bodyText.addEventListener('input', toggleSaveButton);
 saveButton.addEventListener("click", function() {
   saveIdea();
   showIdea();
@@ -37,7 +37,7 @@ function createIdea(){
 }
 
 function toggleSaveButton() {
-  if (titleInput.value === '' || bodyInput.value === '') {
+  if (titleText.value === '' || bodyText.value === '') {
     saveButton.classList.add('disabled');
     saveButton.disabled = true;
   } else {
@@ -54,16 +54,21 @@ function showIdea() {
   var newIdea = document.createElement("article");
   var newIdeaTitle = document.createElement("h2");
   var newIdeaBody = document.createElement("p");
+  var deleteNewIdea = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
+  deleteNewIdea.className = "delete-new-idea-img";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
+    deleteNewIdea.setAttribute("src", "assets/delete.svg");
+    deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
     newIdea.innerHTML = "";
     newIdea.appendChild(newIdeaTitle);
+    newIdea.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);
   }

@@ -122,7 +122,8 @@ button:hover {
 }
 
 .new-idea {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   border: 3px solid #1F1F3C; 
   padding: 1.5%;
   height: 85%;
@@ -133,10 +134,23 @@ button:hover {
   text-align: center;
 }
 
+.new-idea-title {
+  width: 100px;
+  align-self: center;
+}
+
 .disabled {
   background-color: lightgray;
   color: grey;
   cursor: not-allowed;
+}
+
+.delete-new-idea-img {
+  align-self: flex-end;
+  text-align: right;
+  width: 80px;
+  height: 80px;
+  margin-top: -75px;
 }
 
 
