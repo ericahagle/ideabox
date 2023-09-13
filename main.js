@@ -43,4 +43,6 @@ function showIdea() {
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);
   }
+  titleText.value = "";
+  bodyText.value = "";
 }
