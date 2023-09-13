@@ -23,5 +23,5 @@ function createIdea(){
 
 function saveIdea() {
     currentIdeas.ideas.push(createIdea());
-    console.log(currentIdeas.ideas[0]);
+    console.log(currentIdeas.ideas);
 }
