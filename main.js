@@ -3,11 +3,12 @@ var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
 var outputContainer = document.querySelector(".output-container");
 
-
 var currentIdeas = {
   ideas: []
 };
 
+titleInput.addEventListener('input', toggleSaveButton);
+bodyInput.addEventListener('input', toggleSaveButton);
 saveButton.addEventListener("click", function() {
   saveIdea();
   showIdea();
@@ -15,11 +16,34 @@ saveButton.addEventListener("click", function() {
 
 function createIdea(){
   var idea = {
-    title: titleText.value, 
-    body: bodyText.value, 
-    id: Date.now()
+      title: titleText.value, 
+      body: bodyText.value, 
+      id: Date.now()
   };
   return idea;
+}
+
+function saveIdea() {
+  currentIdeas.ideas.push(createIdea());
+}
+
+function createIdea(){
+  var idea = {
+      title: titleText.value, 
+      body: bodyText.value, 
+      id: Date.now()
+  };
+  return idea;
+}
+
+function toggleSaveButton() {
+  if (titleInput.value === '' || bodyInput.value === '') {
+    saveButton.classList.add('disabled');
+    saveButton.disabled = true;
+  } else {
+    saveButton.classList.remove('disabled');
+    saveButton.disabled = false;
+  }
 }
 
 function saveIdea() {

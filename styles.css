@@ -132,3 +132,12 @@ button:hover {
 .new-idea-title, .new-idea-body {
   text-align: center;
 }
+
+.disabled {
+  background-color: lightgray;
+  color: grey;
+  cursor: not-allowed;
+}
+
+
+
