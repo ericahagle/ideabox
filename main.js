@@ -16,7 +16,6 @@ function toggleSaveButton() {
         saveButton.disabled = false;
     }
 }
-toggleSaveButton();
 
 
 
