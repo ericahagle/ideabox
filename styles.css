@@ -110,7 +110,11 @@ button {
     font-size: large;
 }
 
-button:hover {
-    background-color: #FFFFFF;
-    color: #1F1F3C;
+.disabled {
+    background-color: lightgray;
+    color: grey;
+    cursor: not-allowed;
 }
+
+
+
