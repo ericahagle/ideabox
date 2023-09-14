@@ -117,11 +117,19 @@ textarea#title {
 }
 
 .new-idea {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   border: 3px solid #1F1F3C; 
-  padding: 1.5%;
-  height: 85%;
+  padding: 20px;
+  height: 300px;
   width: 250px;
+}
+
+.new-idea-fav-btn {
+  display: flex;
+  align-self: left;
+  height: 75px;
+  width: 75px;
 }
 
 .new-idea-title, .new-idea-body {
@@ -132,4 +140,8 @@ textarea#title {
   background-color: lightgray;
   color: grey;
   cursor: not-allowed;
+}
+
+.hidden {
+  display: none;
 }

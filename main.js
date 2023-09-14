@@ -41,15 +41,20 @@ function showIdea() {
   var newIdea = document.createElement("article");
   var newIdeaTitle = document.createElement("h2");
   var newIdeaBody = document.createElement("p");
+  var newIdeaFav = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
+  newIdeaFav.className = "new-idea-fav-btn";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
+    newIdeaFav.setAttribute("src", "assets/star.svg");
+    newIdeaFav.setAttribute("alt", "a white star-shaped button");
     newIdea.innerHTML = "";
+    newIdea.appendChild(newIdeaFav);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);
