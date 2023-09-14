@@ -42,13 +42,13 @@ function showIdea() {
   var newIdea = document.createElement("article");
   var newIdeaTitle = document.createElement("h2");
   var newIdeaBody = document.createElement("p");
-  var headerContainer = document.createElement("section");
+  var ideaBtnContainer = document.createElement("section");
   var deleteNewIdea = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
-  headerContainer.className = "header-container";
+  ideaBtnContainer.className = "idea-btn-container";
   deleteNewIdea.className = "delete-new-idea-img";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
@@ -58,8 +58,8 @@ function showIdea() {
     deleteNewIdea.setAttribute("src", "assets/delete.svg");
     deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
     newIdea.innerHTML = "";
-    newIdea.appendChild(headerContainer);
-    headerContainer.appendChild(deleteNewIdea);
+    newIdea.appendChild(ideaBtnContainer);
+    ideaBtnContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);

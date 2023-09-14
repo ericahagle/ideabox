@@ -155,7 +155,7 @@ textarea#title {
   cursor: not-allowed;
 }
 
-.header-container {
+.idea-btn-container {
   display: flex;
   background-color: #1F1F3C;
   margin: -4px;
