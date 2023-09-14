@@ -2,7 +2,8 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: #1F1F3C;
   height: 100%;
   width: 100%;
 }
@@ -104,7 +105,7 @@ textarea#title {
   text-align: center;
 }
 
-button {
+.save-btn {
   background-color: #1F1F3C;
   color: #FFFFFF;
   padding: 10px 20px;
@@ -114,11 +115,6 @@ button {
   display: block;
   height: 60px;
   font-size: large;
-}
-
-button:hover {
-  background-color: #FFFFFF;
-  color: #1F1F3C;
 }
 
 .new-idea {

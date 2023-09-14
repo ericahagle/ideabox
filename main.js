@@ -23,19 +23,6 @@ function createIdea(){
   return idea;
 }
 
-function saveIdea() {
-  currentIdeas.ideas.push(createIdea());
-}
-
-function createIdea(){
-  var idea = {
-      title: titleText.value, 
-      body: bodyText.value, 
-      id: Date.now()
-  };
-  return idea;
-}
-
 function toggleSaveButton() {
   if (titleText.value === '' || bodyText.value === '') {
     saveButton.classList.add('disabled');
