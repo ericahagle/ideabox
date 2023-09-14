@@ -122,8 +122,9 @@ textarea#title {
   flex-direction: column;
   border: 3px solid #1F1F3C; 
   padding: 1.5%;
-  height: 85%;
+  height: 90%;
   width: 250px;
+  background-color: #FFFFFF;
 }
 
 .new-idea-title, .new-idea-body {
@@ -131,8 +132,21 @@ textarea#title {
 }
 
 .new-idea-title {
-  width: 100px;
+  width: 200px;
   align-self: center;
+  color: #1F1F3C;
+  font-weight: 700;
+  margin-top: 50px;
+  font-size: 28px;
+}
+
+.new-idea-body {
+  color: #1F1F3C;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: -8px;
+  padding: 10px;
+  overflow: scroll;
 }
 
 .disabled {
@@ -141,7 +155,7 @@ textarea#title {
   cursor: not-allowed;
 }
 
-.delete-container {
+.idea-btn-container {
   display: flex;
   background-color: #1F1F3C;
   margin: -4px;
@@ -154,4 +168,5 @@ textarea#title {
   width: 80px;
   height: 80px;
   margin-top: -16px;
+  filter: brightness(.75);
 }
