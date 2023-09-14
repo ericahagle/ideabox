@@ -51,12 +51,16 @@ function showIdea() {
   var newIdeaBody = document.createElement("p");
   var newIdeaFaveFalse = document.createElement("img");
   var newIdeaFaveTrue = document.createElement("img");
+  var deleteContainer = document.createElement("section");
+  var deleteNewIdea = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
   newIdeaFaveFalse.className = "new-idea-fave-btn";
   newIdeaFaveTrue.className = "new-idea-fave-btn";
+  deleteContainer.className = "delete-container";
+  deleteNewIdea.className = "delete-new-idea-img";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
@@ -71,6 +75,11 @@ function showIdea() {
 
     newIdea.appendChild(newIdeaFaveFalse);
     newIdea.appendChild(newIdeaFaveTrue);
+    deleteNewIdea.setAttribute("src", "assets/delete.svg");
+    deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
+    newIdea.innerHTML = "";
+    newIdea.appendChild(deleteContainer);
+    deleteContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);

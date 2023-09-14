@@ -2,7 +2,8 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: #1F1F3C;
   height: 100%;
   width: 100%;
 }
@@ -136,10 +137,30 @@ textarea#title {
   text-align: center;
 }
 
+.new-idea-title {
+  width: 100px;
+  align-self: center;
+}
+
 .disabled {
   background-color: lightgray;
   color: grey;
   cursor: not-allowed;
+}
+
+.delete-container {
+  display: flex;
+  background-color: #1F1F3C;
+  margin: -4px;
+  height: 50px;
+  justify-content: flex-end;
+}
+
+.delete-new-idea-img {
+  text-align: right;
+  width: 80px;
+  height: 80px;
+  margin-top: -16px;
 }
 
 .hidden {
