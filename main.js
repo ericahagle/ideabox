@@ -7,8 +7,8 @@ var currentIdeas = {
   ideas: []
 };
 
-titleInput.addEventListener('input', toggleSaveButton);
-bodyInput.addEventListener('input', toggleSaveButton);
+titleText.addEventListener('input', toggleSaveButton);
+bodyText.addEventListener('input', toggleSaveButton);
 saveButton.addEventListener("click", function() {
   saveIdea();
   showIdea();
@@ -23,21 +23,8 @@ function createIdea(){
   return idea;
 }
 
-function saveIdea() {
-  currentIdeas.ideas.push(createIdea());
-}
-
-function createIdea(){
-  var idea = {
-      title: titleText.value, 
-      body: bodyText.value, 
-      id: Date.now()
-  };
-  return idea;
-}
-
 function toggleSaveButton() {
-  if (titleInput.value === '' || bodyInput.value === '') {
+  if (titleText.value === '' || bodyText.value === '') {
     saveButton.classList.add('disabled');
     saveButton.disabled = true;
   } else {

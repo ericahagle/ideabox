@@ -104,7 +104,7 @@ textarea#title {
   text-align: center;
 }
 
-button {
+.save-btn {
   background-color: #1F1F3C;
   color: #FFFFFF;
   padding: 10px 20px;
@@ -114,11 +114,6 @@ button {
   display: block;
   height: 60px;
   font-size: large;
-}
-
-button:hover {
-  background-color: #FFFFFF;
-  color: #1F1F3C;
 }
 
 .new-idea {
@@ -138,6 +133,3 @@ button:hover {
   color: grey;
   cursor: not-allowed;
 }
-
-
-
