@@ -5,20 +5,28 @@ var outputContainer = document.querySelector(".output-container");
 
 var currentIdeas = {
   ideas: []
-};
+}
 
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
-saveButton.addEventListener("click", function() {
+saveButton.addEventListener('click', function() {
   saveIdea();
   showIdea();
 })
+outputContainer.addEventListener('click', function(event) {
+  if (event.target.className === "new-idea-fave-btn") {
+    console.log("I clikt da ting");
+    toggleFaveButton();
+  }
+});
+
 
 function createIdea(){
   var idea = {
       title: titleText.value, 
       body: bodyText.value, 
-      id: Date.now()
+      id: Date.now(),
+      isFave: false
   };
   return idea;
 }
@@ -41,24 +49,46 @@ function showIdea() {
   var newIdea = document.createElement("article");
   var newIdeaTitle = document.createElement("h2");
   var newIdeaBody = document.createElement("p");
-  var newIdeaFav = document.createElement("img");
+  var newIdeaFaveFalse = document.createElement("img");
+  var newIdeaFaveTrue = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
-  newIdeaFav.className = "new-idea-fav-btn";
+  newIdeaFaveFalse.className = "new-idea-fave-btn";
+  newIdeaFaveTrue.className = "new-idea-fave-btn";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
-    newIdeaFav.setAttribute("src", "assets/star.svg");
-    newIdeaFav.setAttribute("alt", "a white star-shaped button");
+    newIdeaFaveFalse.setAttribute("src", "assets/star.svg");
+    newIdeaFaveFalse.setAttribute("alt", "a white star-shaped button");
+    newIdeaFaveTrue.setAttribute("src", "assets/star-active.svg");
+    newIdeaFaveTrue.setAttribute("alt", "an orange star-shaped button");
+    newIdeaFaveTrue.classList.add("hidden");
+
     newIdea.innerHTML = "";
-    newIdea.appendChild(newIdeaFav);
+
+    newIdea.appendChild(newIdeaFaveFalse);
+    newIdea.appendChild(newIdeaFaveTrue);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
     outputContainer.appendChild(newIdea);
   }
   titleText.value = "";
   bodyText.value = "";
+}
+
+function toggleFaveButton() {
+  for (var i = 0; i < currentIdeas.ideas.length; i++) {
+    if (currentIdeas.ideas[i].isFave === false) {
+      currentIdeas.ideas[i].isFave = true;
+      newIdeaFaveFalse.classList.add("hidden");
+      newIdeaFaveTrue.classList.remove("hidden");
+    } else {
+      currentIdeas.ideas[i].isFave = false;
+      newIdeaFaveFalse.classList.remove("hidden");
+      newIdeaFaveTrue.classList.add("hidden");
+    }
+  }
 }
