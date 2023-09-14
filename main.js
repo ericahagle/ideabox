@@ -78,9 +78,9 @@ function showIdea() {
     ideaBtnContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
-    deleteContainer.appendChild(newIdeaFaveFalse);
-    deleteContainer.appendChild(newIdeaFaveTrue);
-    deleteContainer.appendChild(deleteNewIdea);
+    ideaBtnContainer.appendChild(newIdeaFaveFalse);
+    ideaBtnContainer.appendChild(newIdeaFaveTrue);
+    ideaBtnContainer.appendChild(deleteNewIdea);
   }
   titleText.value = "";
   bodyText.value = "";
