@@ -1,26 +1,23 @@
+/* Query Selectors */
 var saveButton = document.querySelector(".save-btn");
 var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
 var outputContainer = document.querySelector(".output-container");
 
+/* Data Model */
 var currentIdeas = {
   ideas: []
 }
 
+/* Event Listeners */
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
 saveButton.addEventListener('click', function() {
   saveIdea();
   showIdea();
 })
-outputContainer.addEventListener('click', function(event) {
-  if (event.target.className === "new-idea-fave-btn") {
-    console.log("I clikt da ting");
-    toggleFaveButton();
-  }
-});
 
-
+/* Functions */
 function createIdea(){
   var idea = {
       title: titleText.value, 
@@ -70,34 +67,19 @@ function showIdea() {
     newIdeaFaveTrue.setAttribute("src", "assets/star-active.svg");
     newIdeaFaveTrue.setAttribute("alt", "an orange star-shaped button");
     newIdeaFaveTrue.classList.add("hidden");
-
-    newIdea.innerHTML = "";
-
-    deleteContainer.appendChild(newIdeaFaveFalse);
-    deleteContainer.appendChild(newIdeaFaveTrue);
     deleteNewIdea.setAttribute("src", "assets/delete.svg");
     deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
+
     newIdea.innerHTML = "";
+
+    outputContainer.appendChild(newIdea);
     newIdea.appendChild(deleteContainer);
-    deleteContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
-    outputContainer.appendChild(newIdea);
+    deleteContainer.appendChild(newIdeaFaveFalse);
+    deleteContainer.appendChild(newIdeaFaveTrue);
+    deleteContainer.appendChild(deleteNewIdea);
   }
   titleText.value = "";
   bodyText.value = "";
-}
-
-function toggleFaveButton() {
-  for (var i = 0; i < currentIdeas.ideas.length; i++) {
-    if (currentIdeas.ideas[i].isFave === false) {
-      currentIdeas.ideas[i].isFave = true;
-      newIdeaFaveFalse.classList.add("hidden");
-      newIdeaFaveTrue.classList.remove("hidden");
-    } else {
-      currentIdeas.ideas[i].isFave = false;
-      newIdeaFaveFalse.classList.remove("hidden");
-      newIdeaFaveTrue.classList.add("hidden");
-    }
-  }
 }
