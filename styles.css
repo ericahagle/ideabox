@@ -128,9 +128,10 @@ textarea#title {
 
 .new-idea-fave-btn {
   display: flex;
-  align-self: left;
-  height: 75px;
-  width: 75px;
+  justify-self: left;
+  height: 60px;
+  width: 60px;
+  margin-top: -5px;
 }
 
 .new-idea-title, .new-idea-body {
@@ -149,15 +150,19 @@ textarea#title {
 }
 
 .delete-container {
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  row-gap: 30%;
+  justify-content: first baseline;
+  justify-items: auto;
   background-color: #1F1F3C;
   margin: -4px;
   height: 50px;
-  justify-content: flex-end;
+  
 }
 
 .delete-new-idea-img {
-  text-align: right;
+  justify-self: right;
   width: 80px;
   height: 80px;
   margin-top: -16px;

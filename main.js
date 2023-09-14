@@ -73,8 +73,8 @@ function showIdea() {
 
     newIdea.innerHTML = "";
 
-    newIdea.appendChild(newIdeaFaveFalse);
-    newIdea.appendChild(newIdeaFaveTrue);
+    deleteContainer.appendChild(newIdeaFaveFalse);
+    deleteContainer.appendChild(newIdeaFaveTrue);
     deleteNewIdea.setAttribute("src", "assets/delete.svg");
     deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
     newIdea.innerHTML = "";
