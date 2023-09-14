@@ -145,13 +145,17 @@ button:hover {
   cursor: not-allowed;
 }
 
+.delete-container {
+  display: flex;
+  background-color: #1F1F3C;
+  margin: -10px;
+  height: 50px;
+  justify-content: flex-end;
+}
+
 .delete-new-idea-img {
-  align-self: flex-end;
   text-align: right;
   width: 80px;
   height: 80px;
-  margin-top: -75px;
+  margin-top: -16px;
 }
-
-
-
