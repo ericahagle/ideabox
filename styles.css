@@ -118,7 +118,8 @@ textarea#title {
 }
 
 .new-idea {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   border: 3px solid #1F1F3C; 
   padding: 1.5%;
   height: 85%;
@@ -129,8 +130,28 @@ textarea#title {
   text-align: center;
 }
 
+.new-idea-title {
+  width: 100px;
+  align-self: center;
+}
+
 .disabled {
   background-color: lightgray;
   color: grey;
   cursor: not-allowed;
+}
+
+.delete-container {
+  display: flex;
+  background-color: #1F1F3C;
+  margin: -4px;
+  height: 50px;
+  justify-content: flex-end;
+}
+
+.delete-new-idea-img {
+  text-align: right;
+  width: 80px;
+  height: 80px;
+  margin-top: -16px;
 }
