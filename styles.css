@@ -148,7 +148,7 @@ button:hover {
 .delete-container {
   display: flex;
   background-color: #1F1F3C;
-  margin: -10px;
+  margin: -4px;
   height: 50px;
   justify-content: flex-end;
 }
