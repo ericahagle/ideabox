@@ -145,6 +145,8 @@ textarea#title {
   font-size: 24px;
   font-weight: 400;
   margin-top: -8px;
+  padding: 10px;
+  overflow: scroll;
 }
 
 .disabled {
@@ -153,7 +155,7 @@ textarea#title {
   cursor: not-allowed;
 }
 
-.delete-container {
+.header-container {
   display: flex;
   background-color: #1F1F3C;
   margin: -4px;
