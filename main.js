@@ -3,6 +3,7 @@ var saveButton = document.querySelector(".save-btn");
 var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
 var outputContainer = document.querySelector(".output-container");
+var showStarredBtn = document.querySelector(".show-starred-btn");
 
 /* Data Model */
 var currentIdeas = {
@@ -17,6 +18,12 @@ saveButton.addEventListener("click", function() {
   saveIdea();
   showIdea();
 })
+showStarredBtn.addEventListener("click", function(event) {
+  displayFaves()
+  changeBtnText()
+})
+
+
 
 /* Functions */
 function createIdea(){
@@ -105,3 +112,20 @@ outputContainer.addEventListener('click', function(event) {
         }
     }
 });
+
+function displayFaves() {
+  for (var i = 0; i < currentIdeas.ideas.length; i++) {
+    if(currentIdeas.ideas[i].isFave) {
+      showIdea();
+    }
+  }
+}
+
+function changeBtnText(){
+  if (showStarredBtn.innerText === "Show Starred Ideas"){
+    showStarredBtn.innerText = `Show All Ideas`;
+  }
+  else if (showStarredBtn.innerText === "Show All Ideas") {
+    showStarredBtn.innerText = "Show Starred Ideas";
+  }
+}
