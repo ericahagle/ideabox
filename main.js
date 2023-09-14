@@ -12,7 +12,8 @@ var currentIdeas = {
 /* Event Listeners */
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
-saveButton.addEventListener('click', function() {
+toggleSaveButton();
+saveButton.addEventListener("click", function() {
   saveIdea();
   showIdea();
 })
@@ -48,7 +49,7 @@ function showIdea() {
   var newIdeaBody = document.createElement("p");
   var newIdeaFaveFalse = document.createElement("img");
   var newIdeaFaveTrue = document.createElement("img");
-  var deleteContainer = document.createElement("section");
+  var ideaBtnContainer = document.createElement("section");
   var deleteNewIdea = document.createElement("img");
 
   newIdea.className = "new-idea";
@@ -56,12 +57,13 @@ function showIdea() {
   newIdeaBody.className = "new-idea-body";
   newIdeaFaveFalse.className = "new-idea-fave-btn";
   newIdeaFaveTrue.className = "new-idea-fave-btn";
-  deleteContainer.className = "delete-container";
+  ideaBtnContainer.className = "idea-btn-container";
   deleteNewIdea.className = "delete-new-idea-img";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
+    newIdea.setAttribute('data-id', currentIdeas.ideas[i].id.toString());
     newIdeaFaveFalse.setAttribute("src", "assets/star.svg");
     newIdeaFaveFalse.setAttribute("alt", "a white star-shaped button");
     newIdeaFaveTrue.setAttribute("src", "assets/star-active.svg");
@@ -71,9 +73,9 @@ function showIdea() {
     deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
 
     newIdea.innerHTML = "";
-
     outputContainer.appendChild(newIdea);
-    newIdea.appendChild(deleteContainer);
+    newIdea.appendChild(ideaBtnContainer);
+    ideaBtnContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
     deleteContainer.appendChild(newIdeaFaveFalse);
@@ -82,4 +84,24 @@ function showIdea() {
   }
   titleText.value = "";
   bodyText.value = "";
+  toggleSaveButton();
 }
+
+outputContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-new-idea-img')) { 
+        var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
+
+        var newIdeasArray = [];
+        for (var i = 0; i < currentIdeas.ideas.length; i++) {
+            if (currentIdeas.ideas[i].id.toString() !== idToDelete) {
+                newIdeasArray.push(currentIdeas.ideas[i]);
+            }
+        }
+        currentIdeas.ideas = newIdeasArray;
+
+        var card = event.target.closest('.new-idea');
+        if (card) {
+            outputContainer.removeChild(card);
+        }
+    }
+});
