@@ -130,7 +130,7 @@ textarea#title {
   background-color: #FFFFFF;
 }
 
-.new-idea-fave-btn {
+.new-idea-fave-btn-false, .new-idea-fave-btn-true {
   display: flex;
   justify-self: left;
   height: 60px;

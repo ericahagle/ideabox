@@ -9,6 +9,8 @@ var currentIdeas = {
   ideas: []
 }
 
+var faveIdeas = [];
+
 /* Event Listeners */
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
@@ -55,8 +57,8 @@ function showIdea() {
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
-  newIdeaFaveFalse.className = "new-idea-fave-btn";
-  newIdeaFaveTrue.className = "new-idea-fave-btn";
+  newIdeaFaveFalse.className = "new-idea-fave-btn-false";
+  newIdeaFaveTrue.className = "new-idea-fave-btn-true";
   ideaBtnContainer.className = "idea-btn-container";
   deleteNewIdea.className = "delete-new-idea-img";
 
@@ -105,3 +107,29 @@ outputContainer.addEventListener('click', function(event) {
         }
     }
 });
+
+outputContainer.addEventListener('click', function(event) {
+  if (event.target.classList.contains("new-idea-fave-btn-false") || event.target.classList.contains("new-idea-fave-btn-true")) {
+    var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
+
+    var ideaAlreadyFaved = false;
+
+    for (var i = 0; i < faveIdeas.length; i++) {
+      if (faveIdeas[i].id.toString() === faveIdeaId) {
+        ideaAlreadyFaved = true;
+        alert("This idea is already one of your faves.");
+        break;
+      } 
+    }
+    if (!ideaAlreadyFaved) {
+      for (var j = 0; j < currentIdeas.ideas.length; j++) {
+        if (currentIdeas.ideas[j].id.toString() === faveIdeaId) {
+          faveIdeas.push(currentIdeas.ideas[j]);
+          // newIdeaFaveTrue.classList.add("hidden");
+          // newIdeaFaveFalse.classList.remove("hidden");
+          break;
+        }
+      } 
+    }
+  }
+})
