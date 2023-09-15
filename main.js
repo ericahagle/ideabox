@@ -114,22 +114,31 @@ outputContainer.addEventListener('click', function(event) {
 
     var ideaAlreadyFaved = false;
 
-    for (var i = 0; i < faveIdeas.length; i++) {
-      if (faveIdeas[i].id.toString() === faveIdeaId) {
-        ideaAlreadyFaved = true;
-        alert("This idea is already one of your faves.");
-        break;
-      } 
-    }
-    if (!ideaAlreadyFaved) {
+    if (ideaAlreadyFaved) {
+      for (var i = 0; i < faveIdeas.length; i++) {
+        if (faveIdeas[i].id.toString() === faveIdeaId) {
+          faveIdeas[i].isFave = false;
+          ideaAlreadyFaved = false;
+          faveIdeas.splice(i, 1);
+          console.log("Remaining:", faveIdeas);
+          // alert("This idea is already one of your faves.");
+          break;
+        } 
+      }
+    } else if (!ideaAlreadyFaved) {
       for (var j = 0; j < currentIdeas.ideas.length; j++) {
         if (currentIdeas.ideas[j].id.toString() === faveIdeaId) {
+          currentIdeas.ideas[j].isFave = true;
+          ideaAlreadyFaved = true;
           faveIdeas.push(currentIdeas.ideas[j]);
+          console.log("With Added:", faveIdeas);
           // newIdeaFaveTrue.classList.add("hidden");
           // newIdeaFaveFalse.classList.remove("hidden");
           break;
         }
       } 
+    } else {
+      console.log("Dafuq?");
     }
   }
 })
