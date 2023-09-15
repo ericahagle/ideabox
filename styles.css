@@ -145,6 +145,7 @@ textarea#title {
   font-weight: 700;
   margin-top: 50px;
   font-size: 28px;
+  overflow: scroll;
 }
 
 .new-idea-body {
