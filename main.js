@@ -23,10 +23,10 @@ saveButton.addEventListener("click", function() {
 /* Functions */
 function createIdea(){
   var idea = {
-      title: titleText.value, 
-      body: bodyText.value, 
-      id: Date.now(),
-      isFave: false
+    title: titleText.value, 
+    body: bodyText.value, 
+    id: Date.now(),
+    isFave: false
   };
   return idea;
 }
@@ -49,40 +49,35 @@ function showIdea() {
   var newIdea = document.createElement("article");
   var newIdeaTitle = document.createElement("h2");
   var newIdeaBody = document.createElement("p");
-  var newIdeaFaveFalse = document.createElement("img");
-  var newIdeaFaveTrue = document.createElement("img");
+  var newIdeaFaveBtn = document.createElement("img");
   var ideaBtnContainer = document.createElement("section");
   var deleteNewIdea = document.createElement("img");
 
   newIdea.className = "new-idea";
   newIdeaTitle.className = "new-idea-title";
   newIdeaBody.className = "new-idea-body";
-  newIdeaFaveFalse.className = "new-idea-fave-btn-false";
-  newIdeaFaveTrue.className = "new-idea-fave-btn-true";
+  newIdeaFaveBtn.className = "new-idea-fave-btn";
   ideaBtnContainer.className = "idea-btn-container";
   deleteNewIdea.className = "delete-new-idea-img";
 
   for (var i = 0; i < currentIdeas.ideas.length; i++) {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
+
     newIdea.setAttribute('data-id', currentIdeas.ideas[i].id.toString());
-    newIdea.setAttribute('data-isFave', currentIdeas.ideas[i].isFave);
-    newIdeaFaveFalse.setAttribute("src", "assets/star.svg");
-    newIdeaFaveFalse.setAttribute("alt", "a white star-shaped button");
-    newIdeaFaveTrue.setAttribute("src", "assets/star-active.svg");
-    newIdeaFaveTrue.setAttribute("alt", "an orange star-shaped button");
-    newIdeaFaveTrue.classList.add("hidden");
+    newIdeaFaveBtn.setAttribute("src", "assets/star.svg");
+    newIdeaFaveBtn.setAttribute("alt", "a white star-shaped button");
     deleteNewIdea.setAttribute("src", "assets/delete.svg");
     deleteNewIdea.setAttribute("alt", "a white colored icon that looks like an x");
 
     newIdea.innerHTML = "";
+
     outputContainer.appendChild(newIdea);
     newIdea.appendChild(ideaBtnContainer);
     ideaBtnContainer.appendChild(deleteNewIdea);
     newIdea.appendChild(newIdeaTitle);
     newIdea.appendChild(newIdeaBody);
-    ideaBtnContainer.appendChild(newIdeaFaveFalse);
-    ideaBtnContainer.appendChild(newIdeaFaveTrue);
+    ideaBtnContainer.appendChild(newIdeaFaveBtn);
     ideaBtnContainer.appendChild(deleteNewIdea);
   }
   titleText.value = "";
@@ -91,57 +86,48 @@ function showIdea() {
 }
 
 outputContainer.addEventListener('click', function(event) {
-    if (event.target.classList.contains('delete-new-idea-img')) { 
-        var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
+  if (event.target.classList.contains('delete-new-idea-img')) { 
+    var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
+    var newIdeasArray = [];
 
-        var newIdeasArray = [];
-        for (var i = 0; i < currentIdeas.ideas.length; i++) {
-            if (currentIdeas.ideas[i].id.toString() !== idToDelete) {
-                newIdeasArray.push(currentIdeas.ideas[i]);
-            }
-        }
-        currentIdeas.ideas = newIdeasArray;
-
-        var card = event.target.closest('.new-idea');
-        if (card) {
-            outputContainer.removeChild(card);
-        }
+    for (var i = 0; i < currentIdeas.ideas.length; i++) {
+      if (currentIdeas.ideas[i].id.toString() !== idToDelete) {
+        newIdeasArray.push(currentIdeas.ideas[i]);
+      }
     }
+    currentIdeas.ideas = newIdeasArray;
+
+    var card = event.target.closest('.new-idea');
+    if (card) {
+      outputContainer.removeChild(card);
+    }
+  }
 });
 
-/* What I need to do below */
-
-// When I click the fave button on an idea:
-  // Check if currentIdeas.ideas[i].id === passed id
-  // Check if currentIdeas.ideas[i].isFave === false
-      // That value should update to true
-      // And get added to the faveIdeas array
-      // And white button should be hidden
-      // And orange button should be un-hidden
-  // Check if currentIdeas.ideas[i].isFave === true
-      // That value should update to false
-      // And get removed from the faveIdeas array
-      // And white button should be un-hidden
-      // And orange button should be hidden
-
-
 outputContainer.addEventListener('click', function(event) {
-  if (event.target.classList.contains("new-idea-fave-btn-false") || event.target.classList.contains("new-idea-fave-btn-true")) {
+  if (event.target.classList.contains("new-idea-fave-btn")) {
     var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
-      // if the matching idea IS faved, make it not faved
       if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === true)) {
         currentIdeas.ideas[i].isFave = false;
-        for (var j = 0; j < faveIdeas.length; i++) {
-          if (faveIdeas[i].id.toString() === faveIdeaId) {
-            faveIdeas.splice(i, 1);
+        for (var j = 0; j < faveIdeas.length; j++) {
+          if (faveIdeas[j].id.toString() === faveIdeaId) {
+            faveIdeas.splice(j, 1);
+            event.target.removeAttribute("src");
+            event.target.removeAttribute("alt");
+            event.target.setAttribute("src", "assets/star.svg");
+            event.target.setAttribute("alt", "a white star-shaped button");
             console.log("Remaining:", faveIdeas);
             break;
           }
-        } // if the matching idea IS NOT faved, make it faved
+        }
       } else if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === false)) {
           currentIdeas.ideas[i].isFave = true;
           faveIdeas.push(currentIdeas.ideas[i]);
+          event.target.removeAttribute("src");
+          event.target.removeAttribute("alt");
+          event.target.setAttribute("src", "assets/star-active.svg");
+          event.target.setAttribute("alt", "an orange star-shaped button");
           console.log("With Added:", faveIdeas);
           break;
       } 
