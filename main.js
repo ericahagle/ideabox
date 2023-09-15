@@ -117,7 +117,6 @@ outputContainer.addEventListener('click', function(event) {
             event.target.removeAttribute("alt");
             event.target.setAttribute("src", "assets/star.svg");
             event.target.setAttribute("alt", "a white star-shaped button");
-            console.log("Remaining:", faveIdeas);
             break;
           }
         }
@@ -128,7 +127,6 @@ outputContainer.addEventListener('click', function(event) {
           event.target.removeAttribute("alt");
           event.target.setAttribute("src", "assets/star-active.svg");
           event.target.setAttribute("alt", "an orange star-shaped button");
-          console.log("With Added:", faveIdeas);
           break;
       } 
     } 
