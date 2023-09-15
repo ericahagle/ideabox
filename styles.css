@@ -120,10 +120,18 @@ textarea#title {
   display: flex;
   flex-direction: column;
   border: 3px solid #1F1F3C; 
-  padding: 1.5%;
-  height: 90%;
+  padding: 20px;
+  height: 300px;
   width: 250px;
   background-color: #FFFFFF;
+}
+
+.new-idea-fave-btn {
+  display: flex;
+  justify-self: left;
+  height: 60px;
+  width: 60px;
+  margin-top: -5px;
 }
 
 .new-idea-title, .new-idea-body {
@@ -155,15 +163,18 @@ textarea#title {
 }
 
 .idea-btn-container {
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  row-gap: 30%;
+  justify-content: first baseline;
+  justify-items: auto;
   background-color: #1F1F3C;
-  margin: -4px;
-  height: 50px;
-  justify-content: flex-end;
+  margin: -20px;
+  height: 20%;
 }
 
 .delete-new-idea-img {
-  text-align: right;
+  justify-self: right;
   width: 80px;
   height: 80px;
   margin-top: -16px;
@@ -188,3 +199,7 @@ textarea#title {
 .show-starred-btn:hover {
   background-color: grey; 
   }
+
+.hidden {
+  display: none;
+}
