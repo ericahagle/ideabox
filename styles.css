@@ -100,12 +100,6 @@ textarea#title {
   height: 30px;
 }
 
-.button-wrapper {
-  width: 85%;
-  margin-left: 355px;
-  text-align: center;
-}
-
 .save-btn {
   background-color: #1F1F3C;
   color: #FFFFFF;
@@ -118,6 +112,8 @@ textarea#title {
   font-size: 24px;
   color: #EAEAF4;
   font-weight: bold;
+  width: 750px;
+  margin-left: 165px;
 }
 
 .new-idea {
