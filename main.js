@@ -66,6 +66,7 @@ function showIdea() {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
     newIdea.setAttribute('data-id', currentIdeas.ideas[i].id.toString());
+    newIdea.setAttribute('data-isFave', currentIdeas.ideas[i].isFave);
     newIdeaFaveFalse.setAttribute("src", "assets/star.svg");
     newIdeaFaveFalse.setAttribute("alt", "a white star-shaped button");
     newIdeaFaveTrue.setAttribute("src", "assets/star-active.svg");
@@ -108,37 +109,42 @@ outputContainer.addEventListener('click', function(event) {
     }
 });
 
+/* What I need to do below */
+
+// When I click the fave button on an idea:
+  // Check if currentIdeas.ideas[i].id === passed id
+  // Check if currentIdeas.ideas[i].isFave === false
+      // That value should update to true
+      // And get added to the faveIdeas array
+      // And white button should be hidden
+      // And orange button should be un-hidden
+  // Check if currentIdeas.ideas[i].isFave === true
+      // That value should update to false
+      // And get removed from the faveIdeas array
+      // And white button should be un-hidden
+      // And orange button should be hidden
+
+
 outputContainer.addEventListener('click', function(event) {
   if (event.target.classList.contains("new-idea-fave-btn-false") || event.target.classList.contains("new-idea-fave-btn-true")) {
     var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
-
-    var ideaAlreadyFaved = false;
-
-    if (ideaAlreadyFaved) {
-      for (var i = 0; i < faveIdeas.length; i++) {
-        if (faveIdeas[i].id.toString() === faveIdeaId) {
-          faveIdeas[i].isFave = false;
-          ideaAlreadyFaved = false;
-          faveIdeas.splice(i, 1);
-          console.log("Remaining:", faveIdeas);
-          // alert("This idea is already one of your faves.");
-          break;
-        } 
-      }
-    } else if (!ideaAlreadyFaved) {
-      for (var j = 0; j < currentIdeas.ideas.length; j++) {
-        if (currentIdeas.ideas[j].id.toString() === faveIdeaId) {
-          currentIdeas.ideas[j].isFave = true;
-          ideaAlreadyFaved = true;
-          faveIdeas.push(currentIdeas.ideas[j]);
+    for (var i = 0; i < currentIdeas.ideas.length; i++) {
+      // if the matching idea IS faved, make it not faved
+      if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === true)) {
+        currentIdeas.ideas[i].isFave = false;
+        for (var j = 0; j < faveIdeas.length; i++) {
+          if (faveIdeas[i].id.toString() === faveIdeaId) {
+            faveIdeas.splice(i, 1);
+            console.log("Remaining:", faveIdeas);
+            break;
+          }
+        } // if the matching idea IS NOT faved, make it faved
+      } else if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === false)) {
+          currentIdeas.ideas[i].isFave = true;
+          faveIdeas.push(currentIdeas.ideas[i]);
           console.log("With Added:", faveIdeas);
-          // newIdeaFaveTrue.classList.add("hidden");
-          // newIdeaFaveFalse.classList.remove("hidden");
           break;
-        }
       } 
-    } else {
-      console.log("Dafuq?");
-    }
+    } 
   }
 })
