@@ -14,8 +14,8 @@ var currentIdeas = {
 
 /* Event Listeners */
 window.addEventListener("load", toggleSaveButton);
-titleText.addEventListener('input', toggleSaveButton);
-bodyText.addEventListener('input', toggleSaveButton);
+titleText.addEventListener("input", toggleSaveButton);
+bodyText.addEventListener("input", toggleSaveButton);
 saveButton.addEventListener("click", saveIdea);
 saveButton.addEventListener("click", showIdea);
 showStarredBtn.addEventListener("click", changeBtnText);
@@ -36,10 +36,10 @@ function createIdea() {
 
 function toggleSaveButton() {
   if (titleText.value === '' || bodyText.value === '') {
-    saveButton.classList.add('disabled');
+    saveButton.classList.add("disabled");
     saveButton.disabled = true;
   } else {
-    saveButton.classList.remove('disabled');
+    saveButton.classList.remove("disabled");
     saveButton.disabled = false;
   }
 }
@@ -67,7 +67,7 @@ function showIdea() {
     newIdeaTitle.innerHTML = currentIdeas.ideas[i].title;
     newIdeaBody.innerHTML = currentIdeas.ideas[i].body;
 
-    newIdea.setAttribute('data-id', currentIdeas.ideas[i].id.toString());
+    newIdea.setAttribute("data-id", currentIdeas.ideas[i].id.toString());
     newIdeaFaveBtn.setAttribute("src", "assets/star.svg");
     newIdeaFaveBtn.setAttribute("alt", "a white star-shaped button");
     deleteNewIdea.setAttribute("src", "assets/delete.svg");
@@ -89,8 +89,8 @@ function showIdea() {
 }
 
 function deleteIdea(event) {
-  if (event.target.classList.contains('delete-new-idea-img')) {
-    var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
+  if (event.target.classList.contains("delete-new-idea-img")) {
+    var idToDelete = event.target.closest(".new-idea").getAttribute("data-id");
     var newIdeasArray = [];
 
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
@@ -100,7 +100,7 @@ function deleteIdea(event) {
     }
     currentIdeas.ideas = newIdeasArray;
 
-    var card = event.target.closest('.new-idea');
+    var card = event.target.closest(".new-idea");
     if (card) {
       outputContainer.removeChild(card);
     }
@@ -109,7 +109,7 @@ function deleteIdea(event) {
 
 function toggleFaveButton(event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
-    var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
+    var faveIdeaId = event.target.closest(".new-idea").getAttribute("data-id");
 
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
       if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === true)) {
