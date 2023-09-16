@@ -19,11 +19,12 @@ bodyText.addEventListener('input', toggleSaveButton);
 saveButton.addEventListener("click", function () {
   saveIdea();
   showIdea();
-})
+});
 showStarredBtn.addEventListener("click", function () {
   changeBtnText();
   displayFaves();
-})
+});
+outputContainer.addEventListener("click", toggleFaveButton);
 
 
 
@@ -111,7 +112,7 @@ outputContainer.addEventListener('click', function (event) {
   }
 });
 
-outputContainer.addEventListener('click', function (event) {
+function toggleFaveButton(event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
     var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
@@ -139,7 +140,7 @@ outputContainer.addEventListener('click', function (event) {
 
     }
   }
-})
+}
 
 function displayFaves() {
   if (showStarredBtn.innerText === "Show All Ideas") {
