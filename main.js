@@ -13,9 +13,9 @@ var currentIdeas = {
 var faveIdeas = [];
 
 /* Event Listeners */
+window.addEventListener("load", toggleSaveButton);
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
-toggleSaveButton();
 saveButton.addEventListener("click", function () {
   saveIdea();
   showIdea();
@@ -139,8 +139,7 @@ outputContainer.addEventListener('click', function (event) {
 
     }
   }
-}
-)
+})
 
 function displayFaves() {
   if (showStarredBtn.innerText === "Show All Ideas") {
