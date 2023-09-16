@@ -12,8 +12,6 @@ var currentIdeas = {
   ideas: []
 }
 
-var faveIdeas = [];
-
 /* Event Listeners */
 window.addEventListener("load", toggleSaveButton);
 titleText.addEventListener('input', toggleSaveButton);
@@ -112,29 +110,23 @@ function deleteIdea(event) {
 function toggleFaveButton(event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
     var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
+
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
       if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === true)) {
         currentIdeas.ideas[i].isFave = false;
-        for (var j = 0; j < faveIdeas.length; j++) {
-          if (faveIdeas[j].id.toString() === faveIdeaId) {
-            faveIdeas.splice(j, 1);
-            event.target.removeAttribute("src");
-            event.target.removeAttribute("alt");
-            event.target.setAttribute("src", "assets/star.svg");
-            event.target.setAttribute("alt", "a white star-shaped button");
-            break;
-          }
-        }
+        event.target.removeAttribute("src");
+        event.target.removeAttribute("alt");
+        event.target.setAttribute("src", "assets/star.svg");
+        event.target.setAttribute("alt", "a white star-shaped button");
+        break;
       } else if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === false)) {
         currentIdeas.ideas[i].isFave = true;
-        faveIdeas.push(currentIdeas.ideas[i]);
         event.target.removeAttribute("src");
         event.target.removeAttribute("alt");
         event.target.setAttribute("src", "assets/star-active.svg");
         event.target.setAttribute("alt", "an orange star-shaped button");
         break;
       }
-
     }
   }
 }
@@ -146,8 +138,7 @@ function displayFaves() {
         outputContainer.children[i].classList.add("hidden");
       }
     }
-  }
-  else {
+  } else {
     for (var i = 0; i < outputContainer.children.length; i++) {
       outputContainer.children[i].classList.remove("hidden");
     }
@@ -157,8 +148,7 @@ function displayFaves() {
 function changeBtnText() {
   if (showStarredBtn.innerText === "Show Starred Ideas") {
     showStarredBtn.innerText = "Show All Ideas";
-  }
-  else {
+  } else {
     showStarredBtn.innerText = "Show Starred Ideas";
   }
 }
