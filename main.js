@@ -20,6 +20,8 @@ saveButton.addEventListener("click", function () {
   saveIdea();
   showIdea();
 })
+showStarredBtn.addEventListener("load", toggleStarredButton());
+
 showStarredBtn.addEventListener("click", function () {
   changeBtnText();
   displayFaves();
@@ -120,6 +122,7 @@ outputContainer.addEventListener('click', function (event) {
         for (var j = 0; j < faveIdeas.length; j++) {
           if (faveIdeas[j].id.toString() === faveIdeaId) {
             faveIdeas.splice(j, 1);
+            toggleStarredButton();
             event.target.removeAttribute("src");
             event.target.removeAttribute("alt");
             event.target.setAttribute("src", "assets/star.svg");
@@ -130,6 +133,7 @@ outputContainer.addEventListener('click', function (event) {
       } else if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === false)) {
         currentIdeas.ideas[i].isFave = true;
         faveIdeas.push(currentIdeas.ideas[i]);
+        toggleStarredButton();
         event.target.removeAttribute("src");
         event.target.removeAttribute("alt");
         event.target.setAttribute("src", "assets/star-active.svg");
@@ -163,5 +167,17 @@ function changeBtnText() {
   }
   else {
     showStarredBtn.innerText = "Show Starred Ideas";
+  }
+}
+
+
+function toggleStarredButton() {
+  if (!faveIdeas.length) {
+    showStarredBtn.classList.add("disabled");
+    showStarredBtn.disabled = true;
+  }
+  if (faveIdeas.length > 0) {
+    showStarredBtn.classList.remove("disabled");
+    showStarredBtn.disabled = false;
   }
 }
