@@ -4,6 +4,8 @@ var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
 var outputContainer = document.querySelector(".output-container");
 var showStarredBtn = document.querySelector(".show-starred-btn");
+var deleteIdeaButton = document.querySelector(".delete-new-idea-img");
+var faveIdeaButton = document.querySelector(".new-idea-fave-btn");
 
 /* Data Model */
 var currentIdeas = {
@@ -16,17 +18,12 @@ var faveIdeas = [];
 window.addEventListener("load", toggleSaveButton);
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
-saveButton.addEventListener("click", function () {
-  saveIdea();
-  showIdea();
-});
-showStarredBtn.addEventListener("click", function () {
-  changeBtnText();
-  displayFaves();
-});
+saveButton.addEventListener("click", saveIdea);
+saveButton.addEventListener("click", showIdea);
+showStarredBtn.addEventListener("click", changeBtnText);
+showStarredBtn.addEventListener("click", displayFaves);
 outputContainer.addEventListener("click", toggleFaveButton);
-
-
+outputContainer.addEventListener("click", deleteIdea);
 
 /* Functions */
 function createIdea() {
@@ -93,7 +90,7 @@ function showIdea() {
   toggleSaveButton();
 }
 
-outputContainer.addEventListener('click', function (event) {
+function deleteIdea(event) {
   if (event.target.classList.contains('delete-new-idea-img')) {
     var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
     var newIdeasArray = [];
@@ -110,7 +107,7 @@ outputContainer.addEventListener('click', function (event) {
       outputContainer.removeChild(card);
     }
   }
-});
+}
 
 function toggleFaveButton(event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
