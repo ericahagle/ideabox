@@ -16,22 +16,23 @@ var faveIdeas = [];
 titleText.addEventListener('input', toggleSaveButton);
 bodyText.addEventListener('input', toggleSaveButton);
 toggleSaveButton();
-saveButton.addEventListener("click", function() {
+saveButton.addEventListener("click", function () {
   saveIdea();
   showIdea();
 })
-showStarredBtn.addEventListener("click", function(event) {
-  displayFaves()
-  changeBtnText()
+showStarredBtn.addEventListener("click", function () {
+  clearOutputContainer();
+  displayFaves();
+  changeBtnText();
 })
 
 
 
 /* Functions */
-function createIdea(){
+function createIdea() {
   var idea = {
-    title: titleText.value, 
-    body: bodyText.value, 
+    title: titleText.value,
+    body: bodyText.value,
     id: Date.now(),
     isFave: false
   };
@@ -92,8 +93,8 @@ function showIdea() {
   toggleSaveButton();
 }
 
-outputContainer.addEventListener('click', function(event) {
-  if (event.target.classList.contains('delete-new-idea-img')) { 
+outputContainer.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-new-idea-img')) {
     var idToDelete = event.target.closest('.new-idea').getAttribute('data-id');
     var newIdeasArray = [];
 
@@ -111,7 +112,7 @@ outputContainer.addEventListener('click', function(event) {
   }
 });
 
-outputContainer.addEventListener('click', function(event) {
+outputContainer.addEventListener('click', function (event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
     var faveIdeaId = event.target.closest('.new-idea').getAttribute('data-id');
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
@@ -128,14 +129,70 @@ outputContainer.addEventListener('click', function(event) {
           }
         }
       } else if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === false)) {
-          currentIdeas.ideas[i].isFave = true;
-          faveIdeas.push(currentIdeas.ideas[i]);
-          event.target.removeAttribute("src");
-          event.target.removeAttribute("alt");
-          event.target.setAttribute("src", "assets/star-active.svg");
-          event.target.setAttribute("alt", "an orange star-shaped button");
-          break;
-      } 
-    } 
+        currentIdeas.ideas[i].isFave = true;
+        faveIdeas.push(currentIdeas.ideas[i]);
+        event.target.removeAttribute("src");
+        event.target.removeAttribute("alt");
+        event.target.setAttribute("src", "assets/star-active.svg");
+        event.target.setAttribute("alt", "an orange star-shaped button");
+        break;
+      }
+    }
   }
 })
+
+function clearOutputContainer() {
+  outputContainer.innerHTML = ``;
+}
+
+function displayFaves() {
+  if (showStarredBtn.innerText === "Show Starred Ideas") {
+    for (var i = 0; i < faveIdeas.length; i++) {
+      outputContainer.innerHTML +=
+        `<article class="new-idea">
+        <section class="idea-btn-container">
+          <img src="assets/star-active.svg" alt="an orange star-shaped button" class="new-idea-fave-btn"/>
+          <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
+        </section>
+        <h2 class="new-idea-title">${faveIdeas[i].title}</h2>
+        <p class="new-idea-body">${faveIdeas[i].body}<p>
+      </article>`
+    }
+  }
+  else if (showStarredBtn.innerText === "Show All Ideas") {
+    for (var j = 0; j < currentIdeas.ideas.length; j++) {
+      if (currentIdeas.ideas[j].isFave) {
+        outputContainer.innerHTML +=
+          `<article class="new-idea">
+        <section class="idea-btn-container">
+        <img src="assets/star-active.svg" alt="an orange star-shaped button" class="new-idea-fave-btn"/>
+        <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
+        </section>
+        <h2 class="new-idea-title">${currentIdeas.ideas[j].title}</h2>
+        <p class="new-idea-body">${currentIdeas.ideas[j].body}<p>
+      </article>`
+      }
+      else {
+        outputContainer.innerHTML +=
+          `<article class="new-idea">
+      <section class="idea-btn-container">
+      <img src="assets/star.svg" alt="an white star-shaped button" class="new-idea-fave-btn"/>
+      <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
+      </section>
+      <h2 class="new-idea-title">${currentIdeas.ideas[j].title}</h2>
+      <p class="new-idea-body">${currentIdeas.ideas[j].body}<p>
+    </article>`
+      }
+    }
+  }
+}
+
+
+function changeBtnText() {
+  if (showStarredBtn.innerText === "Show Starred Ideas") {
+    showStarredBtn.innerText = "Show All Ideas";
+  }
+  else {
+    showStarredBtn.innerText = "Show Starred Ideas";
+  }
+}
