@@ -1,5 +1,6 @@
 /* Global */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
@@ -40,7 +41,8 @@ header h1 {
   text-align: center;
 }
 
-section.input-container, section.output-container {
+section.input-container,
+section.output-container {
   flex: 1;
   padding: 10px;
   box-sizing: border-box;
@@ -66,8 +68,9 @@ section.input-container {
   justify-content: center;
 }
 
-article.input-wrapper, button {
-  width: 80%; 
+article.input-wrapper,
+button {
+  width: 80%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -119,7 +122,7 @@ textarea#title {
 .new-idea {
   display: flex;
   flex-direction: column;
-  border: 3px solid #1F1F3C; 
+  border: 3px solid #1F1F3C;
   padding: 20px;
   height: 300px;
   width: 250px;
@@ -134,7 +137,8 @@ textarea#title {
   margin-top: -5px;
 }
 
-.new-idea-title, .new-idea-body {
+.new-idea-title,
+.new-idea-body {
   text-align: center;
 }
 
@@ -155,12 +159,6 @@ textarea#title {
   margin-top: -8px;
   padding: 10px;
   overflow: scroll;
-}
-
-.disabled {
-  background-color: lightgray;
-  color: grey;
-  cursor: not-allowed;
 }
 
 .idea-btn-container {
@@ -184,22 +182,29 @@ textarea#title {
 
 .show-starred-btn {
   background-color: #A8AAD2;
-  color: #1F1F3C; /* Dark purple */
-  padding: 10px 20px; 
-  border: none; 
-  cursor: pointer; 
-  margin-top: 20px; 
+  color: #1F1F3C;
+  /* Dark purple */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center; 
+  text-align: center;
   width: 90%;
   font-size: large;
   font-weight: 700;
-  }
-  
+}
+
 .show-starred-btn:hover {
-  background-color: grey; 
-  }
+  background-color: grey;
+}
+
+.disabled {
+  background-color: lightgray;
+  color: grey;
+  cursor: not-allowed;
+}
 
 .hidden {
   display: none;

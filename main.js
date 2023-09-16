@@ -175,6 +175,7 @@ function toggleStarredButton() {
   if (!faveIdeas.length) {
     showStarredBtn.classList.add("disabled");
     showStarredBtn.disabled = true;
+    showStarredBtn.innerText = "Show Starred Ideas";
   }
   if (faveIdeas.length > 0) {
     showStarredBtn.classList.remove("disabled");
