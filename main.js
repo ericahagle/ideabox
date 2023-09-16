@@ -21,9 +21,8 @@ saveButton.addEventListener("click", function () {
   showIdea();
 })
 showStarredBtn.addEventListener("click", function () {
-  clearOutputContainer();
-  displayFaves();
   changeBtnText();
+  displayFaves();
 })
 
 
@@ -137,56 +136,26 @@ outputContainer.addEventListener('click', function (event) {
         event.target.setAttribute("alt", "an orange star-shaped button");
         break;
       }
+
     }
   }
-})
-
-function clearOutputContainer() {
-  outputContainer.innerHTML = ``;
 }
+)
 
 function displayFaves() {
-  if (showStarredBtn.innerText === "Show Starred Ideas") {
-    for (var i = 0; i < faveIdeas.length; i++) {
-      outputContainer.innerHTML +=
-        `<article class="new-idea">
-        <section class="idea-btn-container">
-          <img src="assets/star-active.svg" alt="an orange star-shaped button" class="new-idea-fave-btn"/>
-          <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
-        </section>
-        <h2 class="new-idea-title">${faveIdeas[i].title}</h2>
-        <p class="new-idea-body">${faveIdeas[i].body}<p>
-      </article>`
+  if (showStarredBtn.innerText === "Show All Ideas") {
+    for (var i = 0; i < outputContainer.children.length; i++) {
+      if (!currentIdeas.ideas[i].isFave) {
+        outputContainer.children[i].classList.add("hidden");
+      }
     }
   }
-  else if (showStarredBtn.innerText === "Show All Ideas") {
-    for (var j = 0; j < currentIdeas.ideas.length; j++) {
-      if (currentIdeas.ideas[j].isFave) {
-        outputContainer.innerHTML +=
-          `<article class="new-idea">
-        <section class="idea-btn-container">
-        <img src="assets/star-active.svg" alt="an orange star-shaped button" class="new-idea-fave-btn"/>
-        <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
-        </section>
-        <h2 class="new-idea-title">${currentIdeas.ideas[j].title}</h2>
-        <p class="new-idea-body">${currentIdeas.ideas[j].body}<p>
-      </article>`
-      }
-      else {
-        outputContainer.innerHTML +=
-          `<article class="new-idea">
-      <section class="idea-btn-container">
-      <img src="assets/star.svg" alt="an white star-shaped button" class="new-idea-fave-btn"/>
-      <img src="assets/delete.svg" alt="a white colored icon that looks like an x" class="delete-new-idea-img"/>
-      </section>
-      <h2 class="new-idea-title">${currentIdeas.ideas[j].title}</h2>
-      <p class="new-idea-body">${currentIdeas.ideas[j].body}<p>
-    </article>`
-      }
+  else {
+    for (var i = 0; i < outputContainer.children.length; i++) {
+      outputContainer.children[i].classList.remove("hidden");
     }
   }
 }
-
 
 function changeBtnText() {
   if (showStarredBtn.innerText === "Show Starred Ideas") {
