@@ -1,4 +1,3 @@
-/* Query Selectors */
 var saveButton = document.querySelector(".save-btn");
 var titleText = document.querySelector("#title");
 var bodyText = document.querySelector("#body");
@@ -7,12 +6,10 @@ var showStarredBtn = document.querySelector(".show-starred-btn");
 var deleteIdeaButton = document.querySelector(".delete-new-idea-img");
 var faveIdeaButton = document.querySelector(".new-idea-fave-btn");
 
-/* Data Model */
 var currentIdeas = {
   ideas: []
 }
 
-/* Event Listeners */
 window.addEventListener("load", toggleSaveButton);
 titleText.addEventListener("input", toggleSaveButton);
 bodyText.addEventListener("input", toggleSaveButton);
@@ -23,7 +20,6 @@ showStarredBtn.addEventListener("click", displayFaves);
 outputContainer.addEventListener("click", toggleFaveButton);
 outputContainer.addEventListener("click", deleteIdea);
 
-/* Functions */
 function createIdea() {
   var idea = {
     title: titleText.value,
@@ -153,22 +149,22 @@ function changeBtnText() {
   }
 }
 
+// An attempt to made to turn this into named functions and separate out the event listeners but that proved too difficult to achieve the time allotted. So the decision was made to leave this piece of code as-is.
 window.onload = function() {
-  var titleTextarea = document.getElementById('title');
-  var bodyTextarea = document.getElementById('body');
+  var titleTextarea = document.getElementById("title");
+  var bodyTextarea = document.getElementById("body");
 
-  titleTextarea.addEventListener('input', function() {
-      checkCharLimit(titleTextarea, 50, 'title');
+  titleTextarea.addEventListener("input", function() {
+    checkCharLimit(titleTextarea, 50, "title");
   });
 
-  bodyTextarea.addEventListener('input', function() {
-      checkCharLimit(bodyTextarea, 400, 'body');
+  bodyTextarea.addEventListener("input", function() {
+    checkCharLimit(bodyTextarea, 400, "body");
   });
-};
+}
 
 function checkCharLimit(textarea, limit, inputField) {
   if (textarea.value.length >= limit) {
-      alert(`You have reached the character limit of ${limit} for the ${inputField}!`);
+    alert(`You have reached the character limit of ${limit} for the ${inputField}!`);
   }
 }
-
