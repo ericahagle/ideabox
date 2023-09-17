@@ -196,9 +196,9 @@ textarea#title {
   font-weight: 700;
 }
 
-.show-starred-btn:hover {
-  background-color: grey;
-}
+/* .show-starred-btn:hover {
+  background-color: red;
+} */
 
 .disabled {
   background-color: lightgray;

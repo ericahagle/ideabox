@@ -14,14 +14,18 @@ var currentIdeas = {
 
 /* Event Listeners */
 window.addEventListener("load", toggleSaveButton);
+window.addEventListener("load", toggleStarredButton);
 titleText.addEventListener("input", toggleSaveButton);
 bodyText.addEventListener("input", toggleSaveButton);
 saveButton.addEventListener("click", saveIdea);
 saveButton.addEventListener("click", showIdea);
+// saveButton.addEventListener("click", toggleStarredButton);
 showStarredBtn.addEventListener("click", changeBtnText);
 showStarredBtn.addEventListener("click", displayFaves);
 outputContainer.addEventListener("click", toggleFaveButton);
 outputContainer.addEventListener("click", deleteIdea);
+// outputContainer.addEventListener("click", toggleStarredButton);
+
 
 /* Functions */
 function createIdea() {
@@ -46,6 +50,7 @@ function toggleSaveButton() {
 
 function saveIdea() {
   currentIdeas.ideas.push(createIdea());
+  // toggleStarredButton();
 }
 
 function showIdea() {
@@ -105,12 +110,12 @@ function deleteIdea(event) {
       outputContainer.removeChild(card);
     }
   }
+  toggleStarredButton();
 }
 
 function toggleFaveButton(event) {
   if (event.target.classList.contains("new-idea-fave-btn")) {
     var faveIdeaId = event.target.closest(".new-idea").getAttribute("data-id");
-
     for (var i = 0; i < currentIdeas.ideas.length; i++) {
       if ((currentIdeas.ideas[i].id.toString() === faveIdeaId) && (currentIdeas.ideas[i].isFave === true)) {
         currentIdeas.ideas[i].isFave = false;
@@ -129,6 +134,7 @@ function toggleFaveButton(event) {
       }
     }
   }
+  toggleStarredButton();
 }
 
 function displayFaves() {
@@ -146,7 +152,7 @@ function displayFaves() {
 }
 
 function changeBtnText() {
-  if (showStarredBtn.innerText === "Show Starred Ideas") {
+  if ((showStarredBtn.innerText === "Show Starred Ideas") && (!showStarredBtn.classList.contains("disabled"))) {
     showStarredBtn.innerText = "Show All Ideas";
   } else {
     showStarredBtn.innerText = "Show Starred Ideas";
@@ -155,13 +161,22 @@ function changeBtnText() {
 
 
 function toggleStarredButton() {
-  if (!faveIdeas.length) {
+  // var faveIdeas = []
+  if (currentIdeas.ideas.length === 0) {
     showStarredBtn.classList.add("disabled");
     showStarredBtn.disabled = true;
-    showStarredBtn.innerText = "Show Starred Ideas";
-  }
-  if (faveIdeas.length > 0) {
-    showStarredBtn.classList.remove("disabled");
-    showStarredBtn.disabled = false;
-  }
+  } 
+  for (var i = 0; i < currentIdeas.ideas.length; i++) {
+      if (currentIdeas.ideas[i].isFave === true) {
+        // faveIdeas.push(currentIdeas.ideas[i])
+        showStarredBtn.classList.remove("disabled");
+        showStarredBtn.disabled = false;
+        break;
+      } else {
+        showStarredBtn.classList.add("disabled");
+        showStarredBtn.disabled = true;
+        displayFaves();
+        changeBtnText();
+      }
+    }
 }
