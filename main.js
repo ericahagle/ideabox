@@ -152,3 +152,23 @@ function changeBtnText() {
     showStarredBtn.innerText = "Show Starred Ideas";
   }
 }
+
+window.onload = function() {
+  var titleTextarea = document.getElementById('title');
+  var bodyTextarea = document.getElementById('body');
+
+  titleTextarea.addEventListener('input', function() {
+      checkCharLimit(titleTextarea, 50, 'title');
+  });
+
+  bodyTextarea.addEventListener('input', function() {
+      checkCharLimit(bodyTextarea, 400, 'body');
+  });
+};
+
+function checkCharLimit(textarea, limit, inputField) {
+  if (textarea.value.length >= limit) {
+      alert(`You have reached the character limit of ${limit} for the ${inputField}!`);
+  }
+}
+
